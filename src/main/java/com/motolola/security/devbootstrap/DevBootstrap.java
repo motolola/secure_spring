@@ -40,7 +40,12 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 		System.out.println(" .......Loading Initial Data ............");
 		
 		//user1
-		User user1 = new User("motolola@icloud.com", bCryptPasswordEncoder.encode("password"), "Motolola", "Agboola", 1);
+		//get the user with the email first ...
+		String email1 = "motolola@icloud.com";
+		User tempUser1 = userRepo.findByEmail(email1);
+		if (tempUser1 == null) {
+			
+		User user1 = new User(email1, bCryptPasswordEncoder.encode("password"), "Motolola", "Agboola", 1);
 		Role role1 = new Role("ADMIN");
 		
 		user1.getRoles().add(role1);
@@ -49,11 +54,16 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 		
 		roleRepo.save(role1);
 		userRepo.save(user1);
+		}
 		
 		
 
 		//user2
-		User user2 = new User("atilola@icloud.com",bCryptPasswordEncoder.encode("password"), "Atilola", "Agboola", 1);
+		//get the user with the email first ...
+		String email2 = "atilola@icloud.com";
+		User tempUser2 = userRepo.findByEmail(email2);
+		if (tempUser2 == null) {
+		User user2 = new User(email2,bCryptPasswordEncoder.encode("password"), "Atilola", "Agboola", 1);
 		System.out.println(bCryptPasswordEncoder.encode("password"));
 		Role role2 = new Role("NORMAL");
 		
@@ -61,7 +71,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 		role2.getUsers().add(user2);
 		
 		userRepo.save(user2);
-		roleRepo.save(role1);
+		roleRepo.save(role2);
+		}
 		
 		
 		System.out.println(" ....... Initial Data Loaded ............");

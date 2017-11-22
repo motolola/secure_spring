@@ -1,5 +1,7 @@
 package com.motolola.security.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,7 +26,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
+	@Column(name = "id")
 	private int id;
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid Email")
@@ -45,7 +47,21 @@ public class User {
 	private int active;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles;
+	private List<Role> roles = new ArrayList<>();
+	
+	
+
+	public User(String email, String password, String name, String lastName, int active) {
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.lastName = lastName;
+		this.active = active;
+	
+	}
+	public User() {
+		
+	}
 
 	public int getId() {
 		return id;
@@ -94,13 +110,13 @@ public class User {
 	public void setActive(int active) {
 		this.active = active;
 	}
-
-	public Set<Role> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
-
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+
+	
 
 }

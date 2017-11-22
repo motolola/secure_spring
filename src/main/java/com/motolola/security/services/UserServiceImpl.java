@@ -1,7 +1,7 @@
 package com.motolola.security.services;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,7 +34,8 @@ public class UserServiceImpl implements UserService{
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        //user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setRoles(new ArrayList<>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}
 

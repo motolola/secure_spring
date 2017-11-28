@@ -1,5 +1,7 @@
 package com.motolola.security.controllers;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,14 +69,20 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
-	public ModelAndView home(){
+	public String home(Principal principal, Model model){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("admin/home");
-		return modelAndView;
+		//return modelAndView;
+		model.addAttribute("user", principal);
+		System.out.println("..... Printing Principal ..............!!!!");
+		System.out.println(principal);
+		System.out.println("..... Printed Principal ..............!!!!");
+		
+		return "admin/home";
 	}
 	@RequestMapping("/access-denied")
 	public String accessdenied()

@@ -1,4 +1,4 @@
-package com.motolola.security.services;
+package com.motolola.dateapp.services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.motolola.security.models.Role;
-import com.motolola.security.models.RoleRepository;
-import com.motolola.security.models.User;
-import com.motolola.security.models.UserRepository;
+import com.motolola.dateapp.models.Role;
+import com.motolola.dateapp.models.RoleRepository;
+import com.motolola.dateapp.models.User;
+import com.motolola.dateapp.models.UserRepository;
 
 
 

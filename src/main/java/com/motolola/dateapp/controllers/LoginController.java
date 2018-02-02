@@ -1,4 +1,4 @@
-package com.motolola.security.controllers;
+package com.motolola.dateapp.controllers;
 
 import java.security.Principal;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.motolola.security.models.User;
-import com.motolola.security.services.UserService;
+import com.motolola.dateapp.models.User;
+import com.motolola.dateapp.services.UserService;
 
 
 @Controller
@@ -25,8 +25,9 @@ public class LoginController {
 	private UserService userService;
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-	public String login()
+	public String login(Model model)
 	{
+		model.addAttribute("greeting", "My greetings");
 		return "login";
 	}
 	/*
@@ -36,6 +37,11 @@ public class LoginController {
 		return modelAndView;
 	}
 	*/
+	@RequestMapping("/hello")
+	public String login3() {
+		
+		return "hello";
+	}
 	
 	
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
@@ -73,7 +79,7 @@ public class LoginController {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+		modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("admin/home");
 		//return modelAndView;

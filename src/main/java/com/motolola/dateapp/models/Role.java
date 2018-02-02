@@ -1,4 +1,4 @@
-package com.motolola.security.models;
+package com.motolola.dateapp.models;
 
 import java.util.ArrayList;
 import java.util.List;

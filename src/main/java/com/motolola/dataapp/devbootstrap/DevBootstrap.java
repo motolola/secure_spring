@@ -1,4 +1,4 @@
-package com.motolola.security.devbootstrap;
+package com.motolola.dataapp.devbootstrap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -6,10 +6,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.motolola.security.models.Role;
-import com.motolola.security.models.RoleRepository;
-import com.motolola.security.models.User;
-import com.motolola.security.models.UserRepository;
+import com.motolola.dateapp.models.Role;
+import com.motolola.dateapp.models.RoleRepository;
+import com.motolola.dateapp.models.User;
+import com.motolola.dateapp.models.UserRepository;
 
 @Component
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -45,7 +45,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 		User tempUser1 = userRepo.findByEmail(email1);
 		if (tempUser1 == null) {
 			
-		User user1 = new User(email1, bCryptPasswordEncoder.encode("password"), "Motolola", "Agboola", 1);
+		//User user1 = new User(email1, bCryptPasswordEncoder.encode("password"), "Motolola", "Agboola", 1);
+		User user1 = new User(email1, bCryptPasswordEncoder.encode("password"), "Motolola", "Agboola", "motoboy", "SE15 6JM", 1);	
 		Role role1 = new Role("ADMIN");
 		
 		user1.getRoles().add(role1);
@@ -63,7 +64,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 		String email2 = "atilola@icloud.com";
 		User tempUser2 = userRepo.findByEmail(email2);
 		if (tempUser2 == null) {
-		User user2 = new User(email2,bCryptPasswordEncoder.encode("password"), "Atilola", "Agboola", 1);
+		//User user2 = new User(email2,bCryptPasswordEncoder.encode("password"), "Atilola", "Agboola", 1);
+		User user2 = new User(email2, bCryptPasswordEncoder.encode("password"), "Atilola", "Agboola", "atigirl", "SE15 6JM", 1);	
 		System.out.println(bCryptPasswordEncoder.encode("password"));
 		Role role2 = new Role("NORMAL");
 		

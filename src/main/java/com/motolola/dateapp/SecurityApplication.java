@@ -1,4 +1,4 @@
-package com.motolola.security;
+package com.motolola.dateapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.motolola.security.models;
+package com.motolola.dateapp.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private int id;
+	
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
@@ -37,12 +38,18 @@ public class User {
 	@NotEmpty(message = "*Please provide your password")
 	@Transient
 	private String password;
-	@Column(name = "name")
-	@NotEmpty(message = "*Please provide your name")
-	private String name;
+	@Column(name = "firstname")
+	@NotEmpty(message = "*Please provide your firstname")
+	private String firstName;
 	@Column(name = "last_name")
 	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
+	@Column(name="nickname")
+	@NotEmpty(message="You must provide a nickname")
+	private String nickName;
+	@Column(name="postcode")
+	@NotEmpty(message="You must provide a postcode")
+	private String postCode;
 	@Column(name = "active")
 	private int active;
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -51,17 +58,24 @@ public class User {
 	
 	
 
-	public User(String email, String password, String name, String lastName, int active) {
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.lastName = lastName;
-		this.active = active;
-	
-	}
+
 	public User() {
 		
 	}
+	
+
+	public User(String email, String password, String firstName, String lastName, String nickName,
+			String postCode, int active) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.nickName = nickName;
+		this.postCode = postCode;
+		this.active = active;
+	}
+
 
 	public int getId() {
 		return id;
@@ -69,6 +83,31 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getPostCode() {
+		return postCode;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
 	}
 
 	public String getPassword() {
@@ -79,13 +118,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getLastName() {
 		return lastName;
@@ -116,7 +148,5 @@ public class User {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
-	
 
 }

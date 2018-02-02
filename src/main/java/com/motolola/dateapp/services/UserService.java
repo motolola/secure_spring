@@ -1,6 +1,6 @@
-package com.motolola.security.services;
+package com.motolola.dateapp.services;
 
-import com.motolola.security.models.User;
+import com.motolola.dateapp.models.User;
 
 public interface UserService {
 	public User findUserByEmail(String email);

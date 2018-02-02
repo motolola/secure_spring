@@ -33,31 +33,40 @@ public class User {
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
+	
 	@Column(name = "password")
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
 	@Transient
 	private String password;
+	
 	@Column(name = "firstname")
 	@NotEmpty(message = "*Please provide your firstname")
 	private String firstName;
+	
 	@Column(name = "last_name")
 	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
+	
 	@Column(name="nickname")
 	@NotEmpty(message="You must provide a nickname")
 	private String nickName;
+	
 	@Column(name="postcode")
 	@NotEmpty(message="You must provide a postcode")
 	private String postCode;
+	
 	@Column(name = "active")
 	private int active;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles = new ArrayList<>();
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_preference", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "preference_id"))
+	private List<Preference> preferences = new ArrayList<>();
 	
-
 
 	public User() {
 		
@@ -148,5 +157,14 @@ public class User {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+
+	public List<Preference> getPreferences() {
+		return preferences;
+	}
+
+	public void setPreferences(List<Preference> preferences) {
+		this.preferences = preferences;
+	}
+	
 
 }

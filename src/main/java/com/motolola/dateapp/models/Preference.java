@@ -49,5 +49,10 @@ public class Preference {
 	public String getDescription() {
 		return description;
 	}
+	@Override
+	public String toString() {
+		return "Preference [id=" + id + ", name=" + name + ", description=" + description + ", users=" + users + "]";
+	}
+	
 
 }

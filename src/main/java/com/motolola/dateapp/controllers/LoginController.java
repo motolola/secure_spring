@@ -30,13 +30,7 @@ public class LoginController {
 		model.addAttribute("greeting", "My greetings");
 		return "login";
 	}
-	/*
-	public ModelAndView login(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("login");
-		return modelAndView;
-	}
-	*/
+	
 	@RequestMapping("/hello")
 	public String login3() {
 		
